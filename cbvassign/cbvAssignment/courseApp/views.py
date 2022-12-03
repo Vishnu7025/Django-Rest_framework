@@ -7,11 +7,15 @@ from rest_framework.views import APIView
 from django.http import Http404
 from rest_framework import mixins,generics
 from rest_framework import viewsets
+from rest_framework.pagination import PageNumberPagination
 # Create your views here.
+class StudentPagination(PageNumberPagination):
+    page_size = 1
+
 class course_viewset(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = courseSerializers
-    
+    pagination_class = StudentPagination
 
 
 # class course_list(generics.ListCreateAPIView):
