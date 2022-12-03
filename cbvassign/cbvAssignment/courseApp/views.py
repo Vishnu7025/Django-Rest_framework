@@ -8,6 +8,7 @@ from django.http import Http404
 from rest_framework import mixins,generics
 from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination,LimitOffsetPagination
+from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 class StudentPagination(PageNumberPagination):
     page_size = 1
@@ -16,6 +17,8 @@ class course_viewset(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = courseSerializers
     pagination_class = LimitOffsetPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name','rate']
 
 
 # class course_list(generics.ListCreateAPIView):
