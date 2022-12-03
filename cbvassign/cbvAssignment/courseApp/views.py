@@ -18,8 +18,9 @@ class course_viewset(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = courseSerializers
     pagination_class = LimitOffsetPagination
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['name','id']
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['name','id']
+    ordering = ['id']
 
 
 # class course_list(generics.ListCreateAPIView):
